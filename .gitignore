@@ -1,0 +1,42 @@
+# ========================
+# 🌐 Global ignore
+# ========================
+*.log
+*.tmp
+*.swp
+*.bak
+.DS_Store
+Thumbs.db
+.env
+.env.*
+.vscode/
+.idea/
+*.iml
+
+# ========================
+# 🚀 Angular (book-network-ui)
+# ========================
+book-network-ui/node_modules/
+book-network-ui/dist/
+book-network-ui/.angular/
+book-network-ui/.env
+book-network-ui/.vscode/
+book-network-ui/package-lock.json
+
+# ========================
+# ☕ Spring Boot (book-network)
+# ========================
+book-network/target/
+book-network/.classpath
+book-network/.project
+book-network/.settings/
+book-network/*.iml
+book-network/.env
+book-network/.vscode/
+book-network/.idea/
+book-network/logs/
+
+# ========================
+# 🐳 Docker (optional)
+# ========================
+*.pid

@@ -1,0 +1,52 @@
+<div class="flex justify-content-center align-items-center w-full min-h-screen">
+  <p-card styleClass="max-w-2xl p-4">
+    <ng-template pTemplate="header">
+      <h3 class="p-text-center flex justify-content-center">Login</h3>
+      <hr />
+    </ng-template>
+
+    <div *ngIf="errorMessages.length">
+      <ng-container *ngFor="let message of errorMessages">
+        <p-messages severity="error">{{ message }}</p-messages>
+      </ng-container>
+    </div>
+
+    <div class="p-field p-mb-3">
+      <label for="login" class="mt-2 p-d-block">Email address</label>
+      <input
+        pInputText
+        [(ngModel)]="authRequest.email"
+        type="email"
+        id="login"
+        placeholder="name@example.com"
+        class="mt-2 p-inputtext w-full"
+      />
+    </div>
+
+    <div class="mt-2 p-field p-mb-3">
+      <label for="password" class="mt-2 p-d-block">Password</label>
+      <input
+        pInputText
+        [(ngModel)]="authRequest.password"
+        type="password"
+        id="password"
+        placeholder="Password"
+        class="mt-2 p-inputtext w-full"
+      />
+    </div>
+
+    <div class="p-d-flex mt-2 p-jc-between p-ai-center p-mb-3">
+      <p-button (click)="login()" label="Sign in" styleClass="p-button-primary">
+        <fa-icon [icon]="['fas', 'sign-in-alt']" slot="icon"></fa-icon>
+      </p-button>
+      <div>
+        Don't have an account?
+        <p-button
+          (click)="register()"
+          label="Register"
+          styleClass="p-button-link"
+        ></p-button>
+      </div>
+    </div>
+  </p-card>
+</div>
