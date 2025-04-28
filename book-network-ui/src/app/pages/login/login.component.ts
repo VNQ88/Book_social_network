@@ -7,6 +7,8 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
+import { AuthenticationService } from '../../services/services';
 
 @Component({
   selector: 'app-login',
@@ -23,11 +25,33 @@ import { CommonModule } from '@angular/common';
   styleUrl: './login.component.scss',
 })
 export class LoginComponent {
+  constructor(
+    private router: Router,
+    private authService: AuthenticationService
+  ) {}
   login() {
-    throw new Error('Method not implemented.');
+    this.errorMessages = [];
+    this.authService
+      .authenticate({
+        body: this.authRequest,
+      })
+      .subscribe({
+        next: (response) => {
+          // save the token
+          this.router.navigate(['books']);
+        },
+        error: (error) => {
+          console.log(error);
+          if (error.error.validationErrors) {
+            this.errorMessages = error.error.validationErrors;
+          } else {
+            this.errorMessages.push(error.error.errorMessages);
+          }
+        },
+      });
   }
   register() {
-    throw new Error('Method not implemented.');
+    this.router.navigate(['register']);
   }
   authRequest: AuthenticationRequest = { email: '', password: '' };
   errorMessages: Array<string> = [];
